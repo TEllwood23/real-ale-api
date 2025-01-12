@@ -11,15 +11,15 @@ with open("data.json") as f:
 def hello_world():
     return "<p>Hello, World!</p>"
 
-@app.route("/breweries", methods=["GET"])
+@app.route("/api/breweries", methods=["GET"])
 def get_breweries():
     return jsonify(data["breweries"])
 
-@app.route("/beers", methods=["GET"])
+@app.route("/api/beers", methods=["GET"])
 def get_beers():
     return jsonify(data["beers"])
 
-@app.route("/styles", methods=["GET"])
+@app.route("/api/styles", methods=["GET"])
 def get_styles():
     return jsonify(data["styles"])
 
