@@ -1,12 +1,16 @@
-import BreweryList from './components/BreweryList';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Breweries from './components/Breweries';
+import HomePage from './components/HomePage';
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <h1>Real Ale API</h1>
-      <BreweryList />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/breweries" element={<Breweries />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
