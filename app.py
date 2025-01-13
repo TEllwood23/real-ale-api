@@ -63,6 +63,9 @@ def get_beers():
     abv_min = request.args.get('abv_min')
     abv_max = request.args.get('abv_max')
     brewery_id = request.args.get('brewery_id')
+    contains = request.args.get('contains')  # Filter for ingredients
+    vegan = request.args.get('vegan')  # Filter for vegan
+    vegetarian = request.args.get('vegetarian')  # Filter for vegetarian
 
     # Start with all beers
     filtered_beers = data["beers"]
@@ -89,7 +92,31 @@ def get_beers():
             if beer["brewery_id"] == brewery_id
         ]
 
+    # Filter by ingredients (contains)
+    if contains:
+        filtered_beers = [
+            beer for beer in filtered_beers
+            if contains.lower() in (ingredient.lower() for ingredient in beer["dietary"]["contains"])
+        ]
+
+    # Filter by vegan
+    if vegan:
+        is_vegan = vegan.lower() == 'true'
+        filtered_beers = [
+            beer for beer in filtered_beers
+            if beer["dietary"].get("vegan", False) == is_vegan
+        ]
+
+    # Filter by vegetarian
+    if vegetarian:
+        is_vegetarian = vegetarian.lower() == 'true'
+        filtered_beers = [
+            beer for beer in filtered_beers
+            if beer["dietary"].get("vegetarian", False) == is_vegetarian
+        ]
+
     return jsonify(filtered_beers)
+
 
 @app.route("/api/styles", methods=["GET"])
 def get_styles():
