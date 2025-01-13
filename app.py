@@ -11,6 +11,16 @@ with open("data.json") as f:
 def hello_world():
     return "<p>Hello, World!</p>"
 
+def find_by_id(data_list, id):
+    return next((item for item in data_list if item["id"] == id), None)
+
+@app.route("/api/breweries/<string:brewery_id>", methods=["GET"])
+def get_brewery_by_id(brewery_id):
+    brewery = find_by_id(data["breweries"], brewery_id)
+    if not brewery:
+        return jsonify({"error": "Brewery not found"}), 404
+    return jsonify(brewery)
+
 @app.route("/api/breweries", methods=["GET"])
 def get_breweries():
     # Initialize with all breweries
@@ -40,18 +50,46 @@ def get_breweries():
 
     return jsonify(filtered_breweries)
 
-@app.route("/api/breweries/<string:brewery_id>", methods=["GET"])
-def get_brewery_by_id(brewery_id):
-    # Search for a brewery with the given ID
-    brewery = next((b for b in data["breweries"] if b["id"] == brewery_id), None)
-    if not brewery:
-        return jsonify({"error": "Brewery not found"}), 404
-    return jsonify(brewery)
-
+@app.route("/api/beers/<string:id>", methods=["GET"])
+def get_beer_by_id(id):
+    beer = find_by_id(data["beers"], id)
+    if not beer:
+        return jsonify({"error": "Beer not found, try another id"}), 404
+    return jsonify(beer)
 
 @app.route("/api/beers", methods=["GET"])
 def get_beers():
-    return jsonify(data["beers"])
+    style = request.args.get('style')
+    abv_min = request.args.get('abv_min')
+    abv_max = request.args.get('abv_max')
+    brewery_id = request.args.get('brewery_id')
+
+    # Start with all beers
+    filtered_beers = data["beers"]
+
+    # Filter by style
+    if style:
+        filtered_beers = [
+            beer for beer in filtered_beers
+            if beer["style"].lower() == style.lower()
+        ]
+
+    # Filter by ABV range
+    if abv_min or abv_max:
+        def abv_in_range(beer):
+            abv = float(beer["abv"].strip('%'))
+            return (not abv_min or abv >= float(abv_min)) and (not abv_max or abv <= float(abv_max))
+
+        filtered_beers = [beer for beer in filtered_beers if abv_in_range(beer)]
+
+    # Filter by brewery ID
+    if brewery_id:
+        filtered_beers = [
+            beer for beer in filtered_beers
+            if beer["brewery_id"] == brewery_id
+        ]
+
+    return jsonify(filtered_beers)
 
 @app.route("/api/styles", methods=["GET"])
 def get_styles():
