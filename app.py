@@ -40,6 +40,15 @@ def get_breweries():
 
     return jsonify(filtered_breweries)
 
+@app.route("/api/breweries/<string:brewery_id>", methods=["GET"])
+def get_brewery_by_id(brewery_id):
+    # Search for a brewery with the given ID
+    brewery = next((b for b in data["breweries"] if b["id"] == brewery_id), None)
+    if not brewery:
+        return jsonify({"error": "Brewery not found"}), 404
+    return jsonify(brewery)
+
+
 @app.route("/api/beers", methods=["GET"])
 def get_beers():
     return jsonify(data["beers"])
