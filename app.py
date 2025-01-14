@@ -59,6 +59,7 @@ def get_beer_by_id(id):
 
 @app.route("/api/beers", methods=["GET"])
 def get_beers():
+    name= request.args.get('name')
     style = request.args.get('style')
     abv_min = request.args.get('abv_min')
     abv_max = request.args.get('abv_max')
@@ -66,9 +67,25 @@ def get_beers():
     contains = request.args.get('contains')  # Filter for ingredients
     vegan = request.args.get('vegan')  # Filter for vegan
     vegetarian = request.args.get('vegetarian')  # Filter for vegetarian
+    unfined = request.args.get('unfined')  # Filter for unfined
 
     # Start with all beers
     filtered_beers = data["beers"]
+
+    # Filter by name
+    name = request.args.get('name')
+    if name:
+        filtered_beers = [
+            beer for beer in filtered_beers
+            if beer['name'].lower() == name.lower()
+        ]
+    # Filter by unfined
+    if unfined:
+        is_unfined = unfined.lower() == 'true'
+        filtered_beers = [
+            beer for beer in filtered_beers
+            if beer["dietary"].get("unfined", False) == is_unfined
+        ]
 
     # Filter by style
     if style:
@@ -118,9 +135,45 @@ def get_beers():
     return jsonify(filtered_beers)
 
 
+@app.route("/api/styles/<string:style_id>", methods=["GET"])
+def get_style_by_id(style_id):
+    style = find_by_id(data["styles"], style_id)
+    if not style:
+        return jsonify({"error": "Style not found"}), 404
+    return jsonify(style)
+
+@app.route("/api/styles/<string:style_id>/subtypes", methods=["GET"])
+def get_subtypes_by_style_id(style_id):
+    style = find_by_id(data["styles"], style_id)
+    if not style:
+        return jsonify({"error": "Style not found"}), 404
+    return jsonify(style.get("subtypes", []))
+
+@app.route("/api/styles/<string:style_id>/subtypes/<string:subtype_id>", methods=["GET"])
+def get_subtype_by_id(style_id, subtype_id):
+    style = find_by_id(data["styles"], style_id)
+    if not style:
+        return jsonify({"error": "Style not found"}), 404
+    subtype = find_by_id(style.get("subtypes", []), subtype_id)
+    if not subtype:
+        return jsonify({"error": "Subtype not found"}), 404
+    return jsonify(subtype)
+
 @app.route("/api/styles", methods=["GET"])
-def get_styles():
-    return jsonify(data["styles"])
+def get_styles_filtered():
+    # Initialize with all styles
+    filtered_styles = data["styles"]
+
+    # Filter by name if provided
+    name = request.args.get('name')
+    if name:
+        filtered_styles = [
+            style for style in filtered_styles
+            if name.lower() in style["name"].lower()
+        ]
+
+    return jsonify(filtered_styles)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
