@@ -1,6 +1,7 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink } from 'react-router-dom'; // Import NavLink for routing
+import logo from '../assets/Real_Ale_API_logo_white.png'
 
 export default function NavigationBar() {
   return (
@@ -19,8 +20,8 @@ export default function NavigationBar() {
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
               <img
-                alt="Your Company"
-                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+                alt="Real Ale API logo"
+                src={logo}
                 className="h-8 w-auto"
               />
             </div>
@@ -30,7 +31,7 @@ export default function NavigationBar() {
                 to="/"
                 end // Add the `end` prop to make sure it matches exactly the home path
                 className={({ isActive }) =>
-                  `inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:text-neon ${isActive ? 'border-indigo-500 text-neon' : ''}`
+                  `inline-flex items-center px-1 py-1 text-sm font-medium text-white hover:text-neon ${isActive ? 'border-indigo-500 text-neon' : ''}`
                 }
               >
                 Home
@@ -39,7 +40,7 @@ export default function NavigationBar() {
                 to="/documentation"
                 end // Add the `end` prop to ensure it only matches the exact `/documentation` path
                 className={({ isActive }) =>
-                  `inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:text-neon ${isActive ? 'border-indigo-500 text-neon' : ''}`
+                  `inline-flex items-center px-1 py-1 text-sm font-medium text-white hover:text-neon ${isActive ? 'border-indigo-500 text-neon' : ''}`
                 }
               >
                 Documentation
@@ -48,7 +49,7 @@ export default function NavigationBar() {
                 to="/key"
                 end
                 className={({ isActive }) =>
-                  `inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:text-neon ${isActive ? 'border-indigo-500 text-neon' : ''}`
+                  `inline-flex items-center px-1 py-1 text-sm font-medium text-white hover:text-neon ${isActive ? 'border-indigo-500 text-neon' : ''}`
                 }
               >
                 API Key
@@ -57,7 +58,7 @@ export default function NavigationBar() {
                 to="/about"
                 end
                 className={({ isActive }) =>
-                  `inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:text-neon ${isActive ? 'border-indigo-500 text-neon' : ''}`
+                  `inline-flex items-center px-1 py-1 text-sm font-medium text-white hover:text-neon ${isActive ? 'border-indigo-500 text-neon' : ''}`
                 }
               >
                 About
@@ -66,7 +67,7 @@ export default function NavigationBar() {
                 to="/search"
                 end
                 className={({ isActive }) =>
-                  `inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:text-neon ${isActive ? 'border-indigo-500 text-neon' : ''}`
+                  `inline-flex items-center px-1 py-1 text-sm font-medium text-white hover:text-neon ${isActive ? 'border-indigo-500 text-neon' : ''}`
                 }
               >
                 Search

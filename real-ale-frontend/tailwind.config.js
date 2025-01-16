@@ -9,7 +9,7 @@ export default {
       colors: {
         'burgundy': '#800020',
         'white': '#ffffff',
-        'neon': '#a2c92a',
+        'neon': '#07aa6d',
         'green': '#606c38'
       },
       backgroundImage: {
