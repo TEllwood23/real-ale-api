@@ -6,6 +6,7 @@ import Documentation from './pages/Documentation';
 import NavigationBar from './components/NavigationBar';
 import About from './pages/About';
 import KeyAuth from './pages/KeyAuth';
+import Search from './pages/Search';
 
 // const App = () => {
 //   return (
@@ -21,20 +22,21 @@ import KeyAuth from './pages/KeyAuth';
 const App = () => {
   return (
     <>
-    <div className="min-h-screen">
-      <NavigationBar />
-      <Router>
+    <Router>
+      <div className="min-h-screen">
+        <NavigationBar />
           <div className="container mx-auto">
-        <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/breweries" element={<Breweries />} />
-            <Route path="/documentation" element={<Documentation />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/key" element={<KeyAuth />} />
-          </Routes>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/breweries" element={<Breweries />} />
+                <Route path="/documentation" element={<Documentation />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/key" element={<KeyAuth />} />
+                <Route path="/search" element={<Search />} />
+            </Routes>
           </div>
-      </Router>
-    </div>
+      </div>
+    </Router>
     </>
   );
 };

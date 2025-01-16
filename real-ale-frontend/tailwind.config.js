@@ -9,9 +9,11 @@ export default {
       colors: {
         'burgundy': '#800020',
         'white': '#ffffff',
+        'neon': '#a2c92a',
+        'green': '#606c38'
       },
       backgroundImage: {
-        'backgroundColor': 'linear-gradient(to bottom, #5a1d1d, #731e1e)',
+        'backgroundColor': 'linear-gradient(to bottom, #800020, #731e1e)',
       }
     },
   },
