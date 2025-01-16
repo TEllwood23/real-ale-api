@@ -11,7 +11,7 @@ export default {
         'white': '#ffffff',
       },
       backgroundImage: {
-        'navbar-gradient': 'linear-gradient(to right, #800020, #000000)',
+        'backgroundColor': 'linear-gradient(to bottom, #5a1d1d, #731e1e)',
       }
     },
   },
