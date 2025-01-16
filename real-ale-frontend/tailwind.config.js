@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        primary: ['Merriweather', 'serif'], // for headers
+        secondary: ['Roboto', 'sans-serif'], // for body text
+      },
       colors: {
         'burgundy': '#800020',
         'white': '#ffffff',
