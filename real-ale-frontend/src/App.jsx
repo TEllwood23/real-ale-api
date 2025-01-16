@@ -2,6 +2,10 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Breweries from './pages/Breweries';
 import HomePage from './pages/Homepage';
+import Documentation from './pages/Documentation';
+import NavigationBar from './components/NavigationBar';
+import About from './pages/About';
+import KeyAuth from './pages/KeyAuth';
 
 // const App = () => {
 //   return (
@@ -17,13 +21,17 @@ import HomePage from './pages/Homepage';
 const App = () => {
   return (
     <>
-      <div className="bg-red-800 text-yellow-500 text-center p-4">
+      {/* <div className="bg-red-800 text-yellow-500 text-center p-4">
         <h1 className="text-2xl font-bold">Hello, Tailwind CSS!</h1>
-      </div>
+      </div> */}
+      <NavigationBar />
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/breweries" element={<Breweries />} />
+          <Route path="/documentation" element={<Documentation />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/key" element={<KeyAuth />} />
         </Routes>
       </Router>
     </>
