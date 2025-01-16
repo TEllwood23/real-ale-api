@@ -22,7 +22,7 @@ export default function NavigationBar() {
               <img
                 alt="Real Ale API logo"
                 src={logo}
-                className="h-8 w-auto"
+                className="h-16 w-auto"
               />
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -31,25 +31,26 @@ export default function NavigationBar() {
                 to="/"
                 end // Add the `end` prop to make sure it matches exactly the home path
                 className={({ isActive }) =>
-                  `inline-flex items-center px-1 py-1 text-sm font-medium text-white hover:text-neon ${isActive ? 'border-indigo-500 text-neon' : ''}`
+                  `inline-flex items-center px-1 py-1 text-sm font-medium text-white hover:text-green ${isActive ? 'border-indigo-500 text-green' : ''}`
                 }
               >
                 Home
               </NavLink>
               <NavLink
                 to="/documentation"
-                end // Add the `end` prop to ensure it only matches the exact `/documentation` path
+                end
                 className={({ isActive }) =>
-                  `inline-flex items-center px-1 py-1 text-sm font-medium text-white hover:text-neon ${isActive ? 'border-indigo-500 text-neon' : ''}`
+                  `inline-flex items-center px-1 py-1 text-sm font-medium text-white hover:text-green ${isActive ? ' text-green' : ''}`
                 }
               >
                 Documentation
               </NavLink>
+
               <NavLink
                 to="/key"
                 end
                 className={({ isActive }) =>
-                  `inline-flex items-center px-1 py-1 text-sm font-medium text-white hover:text-neon ${isActive ? 'border-indigo-500 text-neon' : ''}`
+                  `inline-flex items-center px-1 py-1 text-sm font-medium text-white hover:text-green ${isActive ? 'border-indigo-500 text-green' : ''}`
                 }
               >
                 API Key
@@ -58,7 +59,7 @@ export default function NavigationBar() {
                 to="/about"
                 end
                 className={({ isActive }) =>
-                  `inline-flex items-center px-1 py-1 text-sm font-medium text-white hover:text-neon ${isActive ? 'border-indigo-500 text-neon' : ''}`
+                  `inline-flex items-center px-1 py-1 text-sm font-medium text-white hover:text-green ${isActive ? 'border-indigo-500 text-green' : ''}`
                 }
               >
                 About
@@ -67,7 +68,7 @@ export default function NavigationBar() {
                 to="/search"
                 end
                 className={({ isActive }) =>
-                  `inline-flex items-center px-1 py-1 text-sm font-medium text-white hover:text-neon ${isActive ? 'border-indigo-500 text-neon' : ''}`
+                  `inline-flex items-center px-1 py-1 text-sm font-medium text-white hover:text-green ${isActive ? 'border-indigo-500 text-green' : ''}`
                 }
               >
                 Search
@@ -84,7 +85,7 @@ export default function NavigationBar() {
             to="/"
             end
             className={({ isActive }) =>
-              `block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:border-neon text-white hover:text-burgundy hover:bg-gray-50 ${isActive ? `block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:border-neon text-white hover:text-burgundy hover:bg-gray-50 ${isActive ? 'border-neon text-neon' : ''}`: ''}`
+              `block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:border-green text-white hover:text-burgundy hover:bg-gray-50'} ${isActive ? 'border-green text-green' : ''}`
             }
           >
             Home
@@ -93,7 +94,7 @@ export default function NavigationBar() {
             to="/documentation"
             end
             className={({ isActive }) =>
-              `block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:border-neon text-white hover:text-burgundy hover:bg-gray-50 ${isActive ? `block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:border-neon text-white hover:text-burgundy hover:bg-gray-50 ${isActive ? 'border-neon text-neon' : ''}`: ''}`
+             `block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:border-green text-white hover:text-burgundy hover:bg-gray-50'} ${isActive ? 'border-green text-green' : ''}`
             }
           >
             Documentation
@@ -102,7 +103,7 @@ export default function NavigationBar() {
             to="/key"
             end
             className={({ isActive }) =>
-              `block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:border-neon text-white hover:text-burgundy hover:bg-gray-50 ${isActive ? `block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:border-neon text-white hover:text-burgundy hover:bg-gray-50 ${isActive ? 'border-neon text-neon' : ''}`: ''}`
+              `block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:border-green text-white hover:text-burgundy hover:bg-gray-50'} ${isActive ? 'border-green text-green' : ''}`
             }
           >
             API Key
@@ -111,7 +112,7 @@ export default function NavigationBar() {
             to="/about"
             end
             className={({ isActive }) =>
-              `block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:border-neon text-white hover:text-burgundy hover:bg-gray-50 ${isActive ? `block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:border-neon text-white hover:text-burgundy hover:bg-gray-50 ${isActive ? 'border-neon text-neon' : ''}`: ''}`
+              `block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:border-green text-white hover:text-burgundy hover:bg-gray-50 ${isActive ? 'border-green text-green' : ''}`
             }
           >
             About
@@ -120,7 +121,7 @@ export default function NavigationBar() {
             to="/search"
             end
             className={({ isActive }) =>
-              `block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:border-neon text-white hover:text-burgundy hover:bg-gray-50 ${isActive ? `block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:border-neon text-white hover:text-burgundy hover:bg-gray-50 ${isActive ? 'border-neon text-neon' : ''}`: ''}`
+              `block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:border-green text-white hover:text-burgundy hover:bg-gray-50'} ${isActive ? 'border-green text-green' : ''}`
             }
           >
             Search
