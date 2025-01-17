@@ -64,12 +64,12 @@ def get_beers():
     abv_min = request.args.get('abv_min')
     abv_max = request.args.get('abv_max')
     brewery_id = request.args.get('brewery_id')
-    contains = request.args.get('contains')  # Filter for ingredients
-    vegan = request.args.get('vegan')  # Filter for vegan
-    vegetarian = request.args.get('vegetarian')  # Filter for vegetarian
-    unfined = request.args.get('unfined')  # Filter for unfined
+    contains = request.args.get('contains')
+    vegan = request.args.get('vegan')
+    vegetarian = request.args.get('vegetarian')
+    unfined = request.args.get('unfined')
 
-    # Start with all beers
+
     filtered_beers = data["beers"]
 
     # Filter by name

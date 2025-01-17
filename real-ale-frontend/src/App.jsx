@@ -8,17 +8,6 @@ import About from './pages/About';
 import KeyAuth from './pages/KeyAuth';
 import Search from './pages/Search';
 
-// const App = () => {
-//   return (
-//     <div className="bg-blue-500 text-red-500 text-center p-4">
-//       <h1 className="text-2xl font-bold">Hello, Tailwind CSS!</h1>
-//     </div>
-//   );
-// };
-
-// export default App;
-
-
 const App = () => {
   return (
     <>
