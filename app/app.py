@@ -1,27 +1,27 @@
 import json
 from flask import Flask, jsonify, request
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 # Load data from JSON file
 with open("data.json") as f:
     data = json.load(f)
 
-@app.route("/")
+@application.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
 
 def find_by_id(data_list, id):
     return next((item for item in data_list if item["id"] == id), None)
 
-@app.route("/api/breweries/<string:brewery_id>", methods=["GET"])
+@application.route("/api/breweries/<string:brewery_id>", methods=["GET"])
 def get_brewery_by_id(brewery_id):
     brewery = find_by_id(data["breweries"], brewery_id)
     if not brewery:
         return jsonify({"error": "Brewery not found"}), 404
     return jsonify(brewery)
 
-@app.route("/api/breweries", methods=["GET"])
+@application.route("/api/breweries", methods=["GET"])
 def get_breweries():
     # Initialize with all breweries
     filtered_breweries = data["breweries"]
@@ -50,14 +50,14 @@ def get_breweries():
 
     return jsonify(filtered_breweries)
 
-@app.route("/api/beers/<string:id>", methods=["GET"])
+@application.route("/api/beers/<string:id>", methods=["GET"])
 def get_beer_by_id(id):
     beer = find_by_id(data["beers"], id)
     if not beer:
         return jsonify({"error": "Beer not found, try another id"}), 404
     return jsonify(beer)
 
-@app.route("/api/beers", methods=["GET"])
+@application.route("/api/beers", methods=["GET"])
 def get_beers():
     name= request.args.get('name')
     style = request.args.get('style')
@@ -135,21 +135,21 @@ def get_beers():
     return jsonify(filtered_beers)
 
 
-@app.route("/api/styles/<string:style_id>", methods=["GET"])
+@application.route("/api/styles/<string:style_id>", methods=["GET"])
 def get_style_by_id(style_id):
     style = find_by_id(data["styles"], style_id)
     if not style:
         return jsonify({"error": "Style not found"}), 404
     return jsonify(style)
 
-@app.route("/api/styles/<string:style_id>/subtypes", methods=["GET"])
+@application.route("/api/styles/<string:style_id>/subtypes", methods=["GET"])
 def get_subtypes_by_style_id(style_id):
     style = find_by_id(data["styles"], style_id)
     if not style:
         return jsonify({"error": "Style not found"}), 404
     return jsonify(style.get("subtypes", []))
 
-@app.route("/api/styles/<string:style_id>/subtypes/<string:subtype_id>", methods=["GET"])
+@application.route("/api/styles/<string:style_id>/subtypes/<string:subtype_id>", methods=["GET"])
 def get_subtype_by_id(style_id, subtype_id):
     style = find_by_id(data["styles"], style_id)
     if not style:
@@ -159,7 +159,7 @@ def get_subtype_by_id(style_id, subtype_id):
         return jsonify({"error": "Subtype not found"}), 404
     return jsonify(subtype)
 
-@app.route("/api/styles", methods=["GET"])
+@application.route("/api/styles", methods=["GET"])
 def get_styles_filtered():
     # Initialize with all styles
     filtered_styles = data["styles"]
