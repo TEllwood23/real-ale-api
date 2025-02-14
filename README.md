@@ -39,9 +39,3 @@ Returns details of a specific beer by its ID.
 **GET** /api/styles
 
 Returns a list of all beer styles.
-
-## Getting Started Locally
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
